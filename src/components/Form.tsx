@@ -1,5 +1,6 @@
 import { useState, FormEvent } from "react";
 import { User } from "../types/User";
+import { validate } from "../utils/validate";
 
 const Form = () => {
   const [name, setName] = useState("");
@@ -10,7 +11,23 @@ const Form = () => {
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    alert("teste");
+
+    const data: User = {
+      name,
+      email,
+      agree,
+    };
+
+    const validateErrors = validate(data);
+
+    console.log(data, validateErrors);
+
+    if (Object.keys(validateErrors).length > 0) {
+      alert("Tem erros");
+      return;
+    }
+
+    alert("Obrifado por inscrever");
   };
 
   return (
@@ -23,6 +40,8 @@ const Form = () => {
           type="text"
           placeholder="Digite o seu nome"
           className="rounded-lg py-2 px-2 bg-white text-sm placeholder:text-sm placeholder:text-stone-400"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
         />
       </div>
       <div className="flex flex-col">
@@ -33,6 +52,8 @@ const Form = () => {
           type="email"
           placeholder="Digite o seu email"
           className="rounded-lg py-2 px-2 bg-white text-sm placeholder:text-sm placeholder:text-stone-400"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
         />
       </div>
       <div className="flex flex-col">
@@ -40,7 +61,11 @@ const Form = () => {
           Leia os termos
         </a>
         <div className="flex gap-2 items-center">
-          <input type="checkbox" />
+          <input
+            type="checkbox"
+            checked={agree}
+            onChange={(e) => setAgree(e.target.checked)}
+          />
           <label className="text-sm" htmlFor="agree">
             Concordo com os termos
           </label>
