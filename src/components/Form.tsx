@@ -1,24 +1,44 @@
-import React from "react";
-
 const Form = () => {
   return (
-    <form>
-      <div>
-        <label>Nome</label>
-        <input type="text" placeholder="Digite o seu nome" />
+    <form className="flex flex-col gap-3">
+      <div className="flex flex-col">
+        <label className="text-sm" htmlFor="name">
+          Nome
+        </label>
+        <input
+          type="text"
+          placeholder="Digite o seu nome"
+          className="rounded-lg py-2 px-2 bg-white text-sm placeholder:text-sm placeholder:text-stone-400"
+        />
       </div>
-      <div>
-        <label>Email</label>
-        <input type="email" placeholder="Digite o seu email" />
+      <div className="flex flex-col">
+        <label className="text-sm" htmlFor="email">
+          Email
+        </label>
+        <input
+          type="email"
+          placeholder="Digite o seu email"
+          className="rounded-lg py-2 px-2 bg-white text-sm placeholder:text-sm placeholder:text-stone-400"
+        />
       </div>
-      <div>
-        <a href="Ler os termos"></a>
-        <div>
+      <div className="flex flex-col">
+        <a href="Ler os termos" className="text-xs underline mb-2">
+          Leia os termos
+        </a>
+        <div className="flex gap-2 items-center">
           <input type="checkbox" />
-          <label>Concordo com os termos</label>
+          <label className="text-sm" htmlFor="agree">
+            Concordo com os termos
+          </label>
         </div>
       </div>
-      <button>Cadastrar</button>
+      <button
+        type="submit"
+        className="bg-slate-600 hover:bg-slate-500 font-medium text-sm py-2 px-4 rounded-lg
+        text-white cursor-pointer"
+      >
+        Cadastrar
+      </button>
     </form>
   );
 };
